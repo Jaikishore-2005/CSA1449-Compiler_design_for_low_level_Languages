@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+
 #define MAX_INPUT_LENGTH 1000
+
 int is_single_line_comment(char *line) {
     int length = strlen(line);
     if (length >= 2 && line[0] == '/' && line[1] == '/') {
@@ -8,16 +10,19 @@ int is_single_line_comment(char *line) {
     }
     return 0;
 }
+
 int is_multi_line_comment(char *line) {
     int length = strlen(line);
-    if (length >= 4 && line[0] == '/' && line[1] == '*' && line[length - 2] == '*' && line[length - 1] == '/') {
+    if (length >= 4 && line[0] == '/' && line[1] == '*' && line[length - 3] == '*' && line[length - 2] == '/') {
         return 1;
     }
     return 0;
 }
+
 int main() {
     char input[MAX_INPUT_LENGTH];
     char choice;
+
     do {
         printf("Enter input code:\n");
         fgets(input, MAX_INPUT_LENGTH, stdin);
@@ -31,8 +36,9 @@ int main() {
         else {
             printf("Invalid comment.\n");
         }
+
         printf("Do you want to enter more input? (y/n): ");
-        scanf(" %c", &choice); 
+        scanf(" %c", &choice);  
         while ((getchar()) != '\n');
     } while (choice == 'y' || choice == 'Y');
     
